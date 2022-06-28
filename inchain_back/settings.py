@@ -22,12 +22,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'django-insecure-r1ob4idk&fmg+p)urg8-)!5cnxgdx*@83#w)wec$0w4g(a$1p!'
-SECRET_KEY = env('DJANGO_SECRET_KEY')
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['inchain-server.herokuapp.com'])
+ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS', default=['inchain-server.herokuapp.com'])
 
 
 # Application definition
@@ -159,4 +159,4 @@ GRAPHENE = {
 
 #Admin
 
-ADMIN_URL = env("DJANGO_ADMIN_URL")
+ADMIN_URL = config('DJANGO_ADMIN_URL')
