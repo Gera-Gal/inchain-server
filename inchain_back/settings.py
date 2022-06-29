@@ -25,10 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
+#ALLOWED_HOSTS = []
 ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS', default=['inchain-server.herokuapp.com'])
-
 
 # Application definition
 
@@ -87,15 +87,14 @@ WSGI_APPLICATION = 'inchain_back.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-'''
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': Path(__file__).resolve().parent.parent.parent / 'db.sqlite3',
     }
 }
-'''
-
+"""
 DATABASES = {
     'default': dj_database_url.config(
         default=config('DATABASE_URL')
