@@ -1,1 +1,1 @@
-web: gunicorn inchain_back:wsgi --log-file -
+web: gunicorn inchain_server.inchain_back.wsgi --log-file -
