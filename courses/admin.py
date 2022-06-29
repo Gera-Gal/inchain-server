@@ -1,4 +1,3 @@
-from msilib.schema import Media
 from django.contrib import admin
 
 from .models import MediaFile, Course
