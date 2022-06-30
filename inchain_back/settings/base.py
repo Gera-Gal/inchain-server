@@ -9,26 +9,14 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 '''
-import dj_database_url
 from pathlib import Path
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-r1ob4idk&fmg+p)urg8-)!5cnxgdx*@83#w)wec$0w4g(a$1p!'
-SECRET_KEY = config('DJANGO_SECRET_KEY')
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-#ALLOWED_HOSTS = []
-ALLOWED_HOSTS = config('DJANGO_ALLOWED_HOSTS', default=['inchain-server.herokuapp.com'])
 
 # Application definition
 
@@ -62,7 +50,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'inchain_back.urls'
@@ -83,24 +70,8 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'inchain_back.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': Path(__file__).resolve().parent.parent.parent / 'db.sqlite3',
-    }
-}
-"""
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -144,8 +115,6 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-STATICFILE_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -162,7 +131,3 @@ REST_FRAMEWORK = {
 GRAPHENE = {
     'SCHEMA': 'inchain_back.schema.schema'
 }
-
-#Admin
-
-ADMIN_URL = config('DJANGO_ADMIN_URL')
